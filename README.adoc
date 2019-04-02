@@ -1,0 +1,57 @@
+:pstgresSQL: current
+:toc:
+:project_id: mmiAyoPostgreSQL
+:icons: font
+:source-highlighter: prettify
+
+This guide walks you through the process of building a https://docker.com[Docker] image for running a PostgreSQL.
+
+== What you'll build
+
+This is a PostgreSQL instance that can be connected to via host IP and starts up its own docker container.
+
+== What you'll need
+
+If you are NOT using a Linux machine, you will need a virtualized server. By installing VirtualBox. Visit https://www.virtualbox.org/wiki/Downloads[VirtualBox's download site] and pick the version for your machine. Download and install. Don't worry about actually running it.
+NB: make sure your docker has IPv6 enabled
+You will also need https://docker.com[Docker], which only runs on 64-bit machines. See https://docs.docker.com/installation/#installation for details on setting Docker up for your machine. Before proceeding further, verify you can run `docker` commands from the shell. If you are using boot2docker you need to run that *first*.
+
+[[initial]]
+== Checkout the project
+
+`git checkout https://github.com/thasaleni/mmiAyoPostgreSQL.git`
+[source,java]
+----
+cd mmiAyoPostgreSQL
+----
+== build the docker image
+
+Now you can build the mmiAyoPostgreSQL image.
+
+`$ docker build -t mmiayo/postgres .`
+[source,java]
+----
+$ docker build -t mmiayo/postgres .
+----
+
+== run the docker image
+
+Now you can run the image.
+
+`docker run --rm -p 5432:5432 --name mmiayopostgressql mmiayo/postgres`
+[source,java]
+----
+$ docker run --rm -p 5432:5432 --name mmiayopostgressql mmiayo/postgres
+----
+
+== Summary
+
+Congratulations! You've just created a Docker container for PostreSQL! PostreSQL runs on port 5432 inside the container by default and we mapped that to the same port on the host using "-p" on the command line.
+
+== See Also
+
+The following guides may also be helpful:
+
+* https://docs.docker.com/engine/examples/postgresql_service/[Docker PostGress Containerzation]
+
+
